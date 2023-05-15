@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    
+</head>
+<body>
+    <form id='registerForm'>
+        <label for='name'>Логін:</label>
+        <input type='text' id='name' name='name'>
+
+        <label for='password'>Пароль:</label>
+        <input type='password' id='password' name='password'>
+        
+        <label for='confirmPassword'>Підтвердження паролю:</label>
+        <input type='password' id='confirmPassword' name='confirmPassword'>
+
+        <button type='submit' id="button">Register</button>
+    </form>
+    
+    <p id='successMessage' style='display:none'>Регістрація успішна!</p>
+    <p id="errorMessages"></p>
+
+    <script>
+    $(document).ready(function() {
+        $('#registerForm').submit(function(event) {
+            event.preventDefault();
+            
+            var name = $('#name').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            if (name === '' || password === '' || confirmPassword === '') {
+                $('#errorMessages').text('Будь ласка, заповніть всі поля.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                $('#errorMessages').text('Паролі не збігаються.');
+                return;
+            }
+
+            $('#successMessage').show();
+            $('#errorMessages').empty();
+
+            this.submit();
+        });
+    });
+
+    </script>
+</body>
+</html>
